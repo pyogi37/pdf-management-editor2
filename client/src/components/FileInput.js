@@ -85,7 +85,7 @@ const FileInput = ({ user }) => {
 
   return (
     <Box>
-      <Center pb={1}>
+      <Center pb={3}>
         <Input
           type="file"
           accept=".pdf"
@@ -93,7 +93,7 @@ const FileInput = ({ user }) => {
           backgroundColor={"thistle"}
         />
       </Center>
-      <Center>
+      <Center pb={3}>
         <Button onClick={handleFileUpload} isLoading={pdfLoading}>
           Upload
         </Button>

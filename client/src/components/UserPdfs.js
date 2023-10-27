@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, Button, Text, useToast } from "@chakra-ui/react";
+import { Box, Button, Text, useToast, SimpleGrid } from "@chakra-ui/react";
 import axios from "axios";
 import PDFModal from "./PDFModal";
 import { usePdfContext } from "../Context/pdfContext";
@@ -158,13 +158,12 @@ const UserPdfs = ({ user }) => {
 
   return (
     <Box>
-      <Box overflow={"scroll"} maxH={"70vh"}>
+      <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
         {pdfs.map((pdf, index) => (
           <Box
             key={index}
             p={2}
             border="1px solid #ccc"
-            mb={2}
             onClick={() => openModal(pdf._id)}
             _hover={{ cursor: "pointer" }}
             backgroundColor={"thistle"}
@@ -173,14 +172,14 @@ const UserPdfs = ({ user }) => {
             <Button
               size="sm"
               colorScheme="red"
-              ml={2}
+              mt={2}
               onClick={() => handleDelete(pdf._id)}
             >
               Delete
             </Button>
           </Box>
         ))}
-      </Box>
+      </SimpleGrid>
 
       <PDFModal
         isOpen={isModalOpen}

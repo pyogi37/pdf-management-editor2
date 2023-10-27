@@ -1,4 +1,11 @@
-import { Box, Button, Flex, Spacer, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Spacer,
+  Text,
+  useBreakpointValue, // Import the breakpoint utility
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import FileInput from "../components/FileInput";
 import UserPdfs from "../components/UserPdfs";
@@ -13,6 +20,9 @@ const Homepage = () => {
     navigate("/");
   };
 
+  // Use useBreakpointValue to customize layout based on screen size
+  const isSmallScreen = useBreakpointValue({ base: true, md: false });
+
   return (
     <Box>
       {/* Navbar */}
@@ -23,11 +33,17 @@ const Homepage = () => {
           boxShadow="base"
           bg="lavenderblush"
           w={"100vw"}
+          direction={isSmallScreen ? "column" : "row"} // Adjust direction for small screens
         >
-          <Text fontSize="lg" color={"GrayText"}>
+          <Text
+            fontSize="lg"
+            color={"GrayText"}
+            textAlign={isSmallScreen ? "center" : "left"}
+          >
             Welcome, {user.name} !!
           </Text>
           <Spacer />
+          {isSmallScreen && <Box p={2} /> /* Add space for small screens */}
           <Button colorScheme="red" onClick={logoutHandler}>
             Logout
           </Button>
